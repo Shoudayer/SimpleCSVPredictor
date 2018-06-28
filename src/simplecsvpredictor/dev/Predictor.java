@@ -27,9 +27,17 @@ public abstract class Predictor implements IModel{
      * @return Predicted value
      */
     public Double predictNext(){
-        return predict(y.size());
+        Double x=0.0;
+        if(getX() != null && getX(getX().size()-1) != null ) {
+            x=getX(getX().size()-1)+1;
+        }else if(getY() != null) {
+            x=(double) getY().size();
+        }
+        return predict(x);
     }
     
+    public abstract Double predict(Double x);
+
     /**
      * Infer next value.
      * 
@@ -49,7 +57,7 @@ public abstract class Predictor implements IModel{
      * @param i
      * @return
      */
-    public double getX(int i) {
+    public Double getX(int i) {
         double value = i;
         //if x is defined and value exists
         if(x != null && !x.isEmpty() && x.get(i)!=null) {

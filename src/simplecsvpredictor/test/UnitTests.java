@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import simplecsvpredictor.dev.CSVutils;
@@ -18,11 +17,22 @@ public class UnitTests {
         assertFalse(csv.readCsvToList(0).isEmpty());
     }
     
-    @Test(expected=NullPointerException.class)
+    @Test
+    public void testXYDelimiterprediction() {
+       CSVutils csv = new CSVutils("data2.csv",";"); 
+       ArrayList<Double> x = (ArrayList<Double>) csv.readCsvToList(0);
+       ArrayList<Double> y = (ArrayList<Double>) csv.readCsvToList(1);
+       SimplePredictor model = new SimplePredictor(x,y);
+       model.fit();
+       model.predictNext();
+       
+    }
+    
+    @Test()
     public void testSimplePredictorNull() {
         SimplePredictor model = new SimplePredictor(null);
         model.fit();
-        model.predictNext();
+        assertTrue(0.0 == model.predictNext());
     }
     
     @Test()

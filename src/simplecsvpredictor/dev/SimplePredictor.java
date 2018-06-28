@@ -44,6 +44,16 @@ public class SimplePredictor extends Predictor{
     }
     
     /**
+     * Infer for a given input value.
+     * @param x The given value
+     * @return Predicted output
+     */
+    @Override
+    public Double predict(Double x) {
+        return x+delta;
+    }
+    
+    /**
      * Fit using mean delta.
      */
     public void fit() {
@@ -62,6 +72,7 @@ public class SimplePredictor extends Predictor{
                 }
             }
             delta=deltaSum/ySize;
+            
             }
         
     }

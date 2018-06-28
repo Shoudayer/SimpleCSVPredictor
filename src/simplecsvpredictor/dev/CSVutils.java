@@ -48,7 +48,7 @@ public class CSVutils {
             String sCurrentLine;
             
             while ((sCurrentLine = br.readLine()) != null) {
-                System.out.println(sCurrentLine);
+                
                 if(!sCurrentLine.isEmpty()) {
                     if(sCurrentLine.contains(separator) && sCurrentLine.split(separator).length>=col) {
                         rows.add(Double.parseDouble(sCurrentLine.split(separator)[col].trim()));
